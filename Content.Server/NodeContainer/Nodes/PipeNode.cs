@@ -22,6 +22,10 @@ namespace Content.Server.NodeContainer.Nodes
         [DataField("pipeDirection")]
         private PipeDirection _originalPipeDirection;
 
+        private int Layer = 3;
+
+        private bool AllLayers = false;
+
         /// <summary>
         ///     The *current* pipe directions (accounting for rotation)
         ///     Used to check if this pipe can connect to another pipe in a given direction.
@@ -106,11 +110,19 @@ namespace Content.Server.NodeContainer.Nodes
         {
             base.Initialize(owner, entMan);
 
-            if (!RotationsEnabled)
+            if (RotationsEnabled)
+            {
+                var xform = entMan.GetComponent<TransformComponent>(owner);
+                CurrentPipeDirection = _originalPipeDirection.RotatePipeDirection(xform.LocalRotation);
+            }
+            /// <summary>
+            ///     we fetch the Atmos layer properties of the entity from the component
+            /// </summary>
+            if (!entMan.Resolve<AtmosLayerComponent>(owner, out var layerComponent))
                 return;
 
-            var xform = entMan.GetComponent<TransformComponent>(owner);
-            CurrentPipeDirection = _originalPipeDirection.RotatePipeDirection(xform.LocalRotation);
+            Layer = layerComponent.Layer;
+            AllLayers = layerComponent.AllLayers;
         }
 
         bool IRotatableNode.RotateNode(in MoveEvent ev)
@@ -202,7 +214,8 @@ namespace Content.Server.NodeContainer.Nodes
             foreach (var pipe in PipesInDirection(pos, pipeDir, grid, nodeQuery))
             {
                 if (pipe.NodeGroupID == NodeGroupID
-                    && pipe.CurrentPipeDirection.HasDirection(pipeDir.GetOpposite()))
+                    && pipe.CurrentPipeDirection.HasDirection(pipeDir.GetOpposite())
+                    && (pipe.Layer == Layer || AllLayers == true || pipe.AllLayers == true))
                 {
                     yield return pipe;
                 }

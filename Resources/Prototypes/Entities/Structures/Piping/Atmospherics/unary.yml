@@ -258,6 +258,7 @@
       examinableAddress: true
     - type: WiredNetworkConnection
     - type: PowerSwitch
+    - type: AtmosLayer
 
 - type: entity
   parent: BaseGasThermoMachine
