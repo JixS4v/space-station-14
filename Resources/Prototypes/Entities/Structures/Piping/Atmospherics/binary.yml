@@ -23,7 +23,7 @@
         nodeGroupID: Pipe
         pipeDirection: South
   - type: AtmosLayer
-      requiresOffset: true
+    requiresOffset: true
 
 - type: entity
   parent: GasBinaryBase
