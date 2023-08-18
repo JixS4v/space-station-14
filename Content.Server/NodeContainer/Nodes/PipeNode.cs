@@ -118,7 +118,7 @@ namespace Content.Server.NodeContainer.Nodes
             /// <summary>
             ///     we fetch the Atmos layer properties of the entity from the component
             /// </summary>
-            if (!entMan.Resolve<AtmosLayerComponent>(owner, out var layerComponent))
+            if (!entMan.TryGetComponent<AtmosLayerComponent>(owner, out var layerComponent))
                 return;
 
             Layer = layerComponent.Layer;
