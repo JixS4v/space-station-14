@@ -1,4 +1,4 @@
-namespace Content.Server.Atmos.Piping.Components
+namespace Content.Shared.Atmos.Components
 {
     [RegisterComponent]
 
@@ -8,5 +8,8 @@ namespace Content.Server.Atmos.Piping.Components
 
         [DataField("allLayers")]
         public bool AllLayers = false;
+
+        [DataField("requiresOffset")]
+        public bool RequiresOffset = false;
     }
 }

@@ -16,6 +16,8 @@
           nodeGroupID: Pipe
           pipeDirection: South
     - type: CollideOnAnchor
+    - type: AtmosLayer
+      requiresOffset: true
 
 - type: entity
   parent: GasUnaryBase
@@ -259,6 +261,7 @@
     - type: WiredNetworkConnection
     - type: PowerSwitch
     - type: AtmosLayer
+      requireOffset: false
 
 - type: entity
   parent: BaseGasThermoMachine

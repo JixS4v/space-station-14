@@ -1,5 +1,5 @@
 using Content.Server.Atmos;
-using Content.Server.Atmos.Piping.Components;
+using Content.Shared.Atmos.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos;
