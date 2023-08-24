@@ -28,7 +28,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
+    sprite: Structures/Piping/Atmospherics/pipe/layer3.rsi
     drawdepth: ThinPipe
     visible: false
   - type: Appearance

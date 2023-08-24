@@ -1,9 +1,10 @@
 namespace Content.Shared.Atmos.Components
 {
-    [RegisterComponent]
-
+    [RegisterComponent, NetworkedComponent]
+    [AutoGenerateComponentState]
     public sealed class AtmosLayerComponent : Component
     {
+        [AutoNetworkedField]
         public int Layer = 3;
 
         [DataField("allLayers")]
